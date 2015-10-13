@@ -11,12 +11,12 @@ import spam_config as config
 
 @click.group()
 def cli():
-    """CLI for the Spam Filter"""
+    """CLI for a bayesian spam filter"""
     pass
 
 @cli.command()
 @click.argument("folder")
-@click.option("--type", help="The type of emails to train on. Values: 'ham' or 'spam'", type=click.Choice(['ham', 'spam']))
+@click.option("--type", "-t", help="The type of emails to train on. Values: 'ham' or 'spam'", type=click.Choice(['ham', 'spam']))
 def train(folder, type):
     model = spammodel.SpamModel(config.db_path)
     classifier = spamclassifier.SpamClassifier(model)
